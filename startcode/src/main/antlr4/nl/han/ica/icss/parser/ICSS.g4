@@ -45,5 +45,18 @@ ASSIGNMENT_OPERATOR: ':=';
 
 
 //--- PARSER: ---
-stylesheet: EOF;
+stylesheet: class EOF;
 
+class: CLASS_IDENT;
+idSelector: ID_IDENT;
+selector: (LOWER_IDENT | CAPITAL_IDENT);
+
+property: LOWER_IDENT ASSIGNMENT_OPERATOR value;
+// Ik denk dat het hier van waarde is om een soort switch te maken voor soorten property en verwachte value, denk colour met colour value
+value: ();
+bool: (TRUE | FALSE);
+
+line: (class | idSelector | selector) OPEN_BRACE property CLOSE_BRACE;
+
+
+// https://www.codecademy.com/article/glossary-css
