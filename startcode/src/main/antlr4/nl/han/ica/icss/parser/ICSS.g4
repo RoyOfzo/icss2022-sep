@@ -56,7 +56,7 @@ class: CLASS_IDENT;
 idSelector: ID_IDENT;
 selector: (LOWER_IDENT | CAPITAL_IDENT);
 universalSelector: MUL;
-attributeSelector: OPEN_BRACE attribute CLOSE_BRACE;
+attributeSelector: BOX_BRACKET_OPEN attribute BOX_BRACKET_CLOSE;
 attribute:; // moet nog over nagedacht worden, p[style] { ... }
 pseudoClass: attribute ASSIGNMENT_OPERATOR property;
 // pseudo-class is nog een beetje vaag, vereist meer onderzoek
@@ -73,14 +73,16 @@ scale: SCALAR;
 percentage: PERCENTAGE;
 pixelSize: PIXELSIZE;
 colorValue: COLOR;
-other: LOWER_IDENT | CAPITAL_IDENT;
-value: (bool | scale | percentage | pixelSize | colorValue | other);
+nonOperatorValues: (bool | colorValue );
+operatorValues: ( pixelSize | percentage | scale | CAPITAL_IDENT);
+expression: expression (MUL) expression
+          | expression(PLUS| MIN) expression
+          | '(' expression ')'
+          | operatorValues ;
+value: expression | nonOperatorValues;
+
 property: LOWER_IDENT;
-
 declaration: property COLON value;
-
-
-
 declarationBlock: (declaration SEMICOLON)* declaration SEMICOLON?;
 // Semicolon is niet nodig op de laatste property in een block
 // Ik denk dat het hier van waarde is om een soort switch te maken voor soorten property en verwachte value, denk colour met colour value
