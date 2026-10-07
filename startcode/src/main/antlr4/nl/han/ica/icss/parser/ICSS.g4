@@ -53,8 +53,13 @@ selector: (LOWER_IDENT | CAPITAL_IDENT);
 
 property: LOWER_IDENT ASSIGNMENT_OPERATOR value;
 // Ik denk dat het hier van waarde is om een soort switch te maken voor soorten property en verwachte value, denk colour met colour value
-value: ();
+value: (bool | scale | percentage | pixelSize | colorValue);
 bool: (TRUE | FALSE);
+scale: SCALAR;
+percentage: PERCENTAGE;
+pixelSize: PIXELSIZE;
+colorValue: COLOR;
+
 
 line: (class | idSelector | selector) OPEN_BRACE property CLOSE_BRACE;
 
