@@ -50,7 +50,7 @@ AT: '@';
 AUTO: 'auto';
 
 //--- PARSER: ---
-stylesheet: class EOF;
+stylesheet: (variableAssignment | statement | styleRule)* EOF;
 
 class: CLASS_IDENT;
 idSelector: ID_IDENT;
@@ -64,18 +64,21 @@ pseudoElement: attribute ASSIGNMENT_OPERATOR property;
 // pseudo-element is ook nog vaag, vereist meer onderzoek
 atRule: AT LOWER_IDENT;
 // erg vaag, heeft ook te maken met statements, moet nog onderzocht worden
+variableAssignment: CAPITAL_IDENT ASSIGNMENT_OPERATOR value SEMICOLON;
 
-combinator: (PLUS | MIN | MUL | GREATER_THAN | LESS_THAN | TILDE);
+combinator: PLUS | MIN | MUL | GREATER_THAN | LESS_THAN | TILDE;
 
 bool: (TRUE | FALSE);
 scale: SCALAR;
 percentage: PERCENTAGE;
 pixelSize: PIXELSIZE;
 colorValue: COLOR;
-value: (bool | scale | percentage | pixelSize | colorValue);
+other: LOWER_IDENT | CAPITAL_IDENT;
+value: (bool | scale | percentage | pixelSize | colorValue | other);
 property: LOWER_IDENT;
 
-declaration: property ASSIGNMENT_OPERATOR value SEMICOLON;
+declaration: property COLON value;
+
 
 
 declarationBlock: (declaration SEMICOLON)* declaration SEMICOLON?;
@@ -85,6 +88,7 @@ declarationBlock: (declaration SEMICOLON)* declaration SEMICOLON?;
 
 styleRule: (class | idSelector | selector | universalSelector) OPEN_BRACE declarationBlock CLOSE_BRACE;
 // Er moet nog nagedacht worden over het feit dat een css style rule kan bestaan uit meerdere klassen, id selectors of selectors
+statement: atRule;
 
 
 // https://www.codecademy.com/article/glossary-css
