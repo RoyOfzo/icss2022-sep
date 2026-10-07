@@ -41,8 +41,13 @@ MIN: '-';
 MUL: '*';
 ASSIGNMENT_OPERATOR: ':=';
 
+GREATER_THAN: '>';
+LESS_THAN: '<';
+TILDE: '~';
+AT: '@';
 
-
+// Keywords
+AUTO: 'auto';
 
 //--- PARSER: ---
 stylesheet: class EOF;
@@ -50,18 +55,38 @@ stylesheet: class EOF;
 class: CLASS_IDENT;
 idSelector: ID_IDENT;
 selector: (LOWER_IDENT | CAPITAL_IDENT);
+universalSelector: MUL;
+attributeSelector: OPEN_BRACE attribute CLOSE_BRACE;
+attribute:; // moet nog over nagedacht worden, p[style] { ... }
+pseudoClass: attribute ASSIGNMENT_OPERATOR property;
+// pseudo-class is nog een beetje vaag, vereist meer onderzoek
+pseudoElement: attribute ASSIGNMENT_OPERATOR property;
+// pseudo-element is ook nog vaag, vereist meer onderzoek
+atRule: AT LOWER_IDENT;
+// erg vaag, heeft ook te maken met statements, moet nog onderzocht worden
 
-property: LOWER_IDENT ASSIGNMENT_OPERATOR value;
-// Ik denk dat het hier van waarde is om een soort switch te maken voor soorten property en verwachte value, denk colour met colour value
-value: (bool | scale | percentage | pixelSize | colorValue);
+combinator: (PLUS | MIN | MUL | GREATER_THAN | LESS_THAN | TILDE);
+
 bool: (TRUE | FALSE);
 scale: SCALAR;
 percentage: PERCENTAGE;
 pixelSize: PIXELSIZE;
 colorValue: COLOR;
+value: (bool | scale | percentage | pixelSize | colorValue);
+property: LOWER_IDENT;
+
+declaration: property ASSIGNMENT_OPERATOR value SEMICOLON;
 
 
-line: (class | idSelector | selector) OPEN_BRACE property CLOSE_BRACE;
+declarationBlock: (declaration SEMICOLON)* declaration SEMICOLON?;
+// Semicolon is niet nodig op de laatste property in een block
+// Ik denk dat het hier van waarde is om een soort switch te maken voor soorten property en verwachte value, denk colour met colour value
+// Misschien melden wanneer het leeg is, maar geen error gooien?
+
+styleRule: (class | idSelector | selector | universalSelector) OPEN_BRACE declarationBlock CLOSE_BRACE;
+// Er moet nog nagedacht worden over het feit dat een css style rule kan bestaan uit meerdere klassen, id selectors of selectors
 
 
 // https://www.codecademy.com/article/glossary-css
+// https://www.impressivewebs.com/css-terms-definitions/
+// https://teamtreehouse.com/community/does-the-semicolon-have-to-be-added-after-each-declaration-in-a-rule-or-is-it-optional
