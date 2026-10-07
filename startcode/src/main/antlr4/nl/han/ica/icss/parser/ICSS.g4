@@ -46,17 +46,17 @@ LESS_THAN: '<';
 TILDE: '~';
 AT: '@';
 
-// Keywords
-AUTO: 'auto';
-
 //--- PARSER: ---
 stylesheet: (variableAssignment | statement | styleRule)* EOF;
 
-class: CLASS_IDENT;
+classSelector: CLASS_IDENT;
 idSelector: ID_IDENT;
-selector: (LOWER_IDENT | CAPITAL_IDENT);
-universalSelector: MUL;
+tagSelector: (LOWER_IDENT | CAPITAL_IDENT);
 attributeSelector: BOX_BRACKET_OPEN attribute BOX_BRACKET_CLOSE;
+variableAssignment: variable ASSIGNMENT_OPERATOR value SEMICOLON;
+universalSelector: MUL;
+
+//Waarschijnlijk onnodig, maar zou interessant zijn om te implementeren
 attribute:; // moet nog over nagedacht worden, p[style] { ... }
 pseudoClass: attribute ASSIGNMENT_OPERATOR property;
 // pseudo-class is nog een beetje vaag, vereist meer onderzoek
@@ -64,10 +64,8 @@ pseudoElement: attribute ASSIGNMENT_OPERATOR property;
 // pseudo-element is ook nog vaag, vereist meer onderzoek
 atRule: AT LOWER_IDENT;
 // erg vaag, heeft ook te maken met statements, moet nog onderzocht worden
-variableAssignment: CAPITAL_IDENT ASSIGNMENT_OPERATOR value SEMICOLON;
 
-combinator: PLUS | MIN | MUL | GREATER_THAN | LESS_THAN | TILDE;
-
+variable: CAPITAL_IDENT;
 bool: (TRUE | FALSE);
 scale: SCALAR;
 percentage: PERCENTAGE;
@@ -83,13 +81,15 @@ value: expression | nonOperatorValues;
 
 property: LOWER_IDENT;
 declaration: property COLON value;
-declarationBlock: (declaration SEMICOLON)* declaration SEMICOLON?;
+declarationBlock: (declaration SEMICOLON | ifClause )* (declaration SEMICOLON?)?;
 // Semicolon is niet nodig op de laatste property in een block
 // Ik denk dat het hier van waarde is om een soort switch te maken voor soorten property en verwachte value, denk colour met colour value
 // Misschien melden wanneer het leeg is, maar geen error gooien?
 
-styleRule: (class | idSelector | selector | universalSelector) OPEN_BRACE declarationBlock CLOSE_BRACE;
-// Er moet nog nagedacht worden over het feit dat een css style rule kan bestaan uit meerdere klassen, id selectors of selectors
+ifClause: IF BOX_BRACKET_OPEN variable BOX_BRACKET_CLOSE OPEN_BRACE declarationBlock CLOSE_BRACE elseClause?;
+elseClause: ELSE OPEN_BRACE declarationBlock CLOSE_BRACE;
+
+styleRule: (classSelector | idSelector | tagSelector | universalSelector | attributeSelector)+ OPEN_BRACE declarationBlock CLOSE_BRACE;
 statement: atRule;
 
 
