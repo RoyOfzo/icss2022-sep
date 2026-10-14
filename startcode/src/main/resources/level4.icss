@@ -1,0 +1,98 @@
+// Parser stress test met whitespaces, comments en nesting.
+Zero := 0;
+HugeNumber := 999999999;
+FullWidth := 100%;
+PrimaryColor := #000000;
+SecondaryColor := #ffffff;
+Enabled := TRUE;
+
+p {
+    width: (OnePixel + 2px) * 3;
+    height: 0px;
+    color: PrimaryColor;
+    background-color: #abcdef;
+}
+
+#id-with-many-parts {
+    width: 100%;
+}
+
+.class-name-2 {
+    height: FullWidth;
+}
+
+* {
+    width: HugeNumber - 1;
+}
+
+[] {
+    color: SecondaryColor;
+}
+
+// Multiple selectors are accepted by the grammar and exercise repetition.
+header nav a {
+    color: #123456;
+}
+
+// Parentheses and both operator precedences.
+main {
+    width: (10px + 20px) * 3;
+    height: 100px - 2 * 10px;
+}
+
+// The final declaration semicolon is optional.
+footer {
+    color: #fedcba
+}
+
+// Deeply nested if else clauses with some being empty.
+section {
+    if[Enabled] {
+        if[!Disabled] {
+            color: PrimaryColor;
+        } else {
+            color: SecondaryColor;
+        }
+        if[Disabled] {
+        } else {
+            background-color: #112233;
+        }
+    } else {
+        if[Enabled] {
+            color: #445566;
+        }
+    }
+    width: OnePixel;
+}
+
+// Missing semicolon on last line of a block is accepted
+article {
+    width: 1px;
+    height: 2px;
+    color: #a1b2c3
+}
+
+// At rule with nested selectors
+@media (max-width: 600px) {
+    body {
+        background-color: #f0f0f0;
+    }
+    p {
+        font-size: 14px;
+    }
+}
+
+// Nested selectors
+p {
+    color: #33ad4f;
+    a {
+        color: #007bff;
+        text-decoration: none;
+    }
+}
+
+// Universal selector
+* {
+    margin: 0;
+    padding: 0;
+}

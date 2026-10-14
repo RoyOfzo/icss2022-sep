@@ -52,6 +52,12 @@ public interface ICSSVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitUniversalSelector(ICSSParser.UniversalSelectorContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link ICSSParser#atRule}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAtRule(ICSSParser.AtRuleContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link ICSSParser#attribute}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -69,12 +75,6 @@ public interface ICSSVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitPseudoElement(ICSSParser.PseudoElementContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link ICSSParser#atRule}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAtRule(ICSSParser.AtRuleContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ICSSParser#variable}.
 	 * @param ctx the parse tree
@@ -112,6 +112,12 @@ public interface ICSSVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitColorValue(ICSSParser.ColorValueContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link ICSSParser#keyword}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitKeyword(ICSSParser.KeywordContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link ICSSParser#nonOperatorValues}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -124,11 +130,40 @@ public interface ICSSVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitOperatorValues(ICSSParser.OperatorValuesContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ICSSParser#expression}.
+	 * Visit a parse tree produced by the {@code parentheses}
+	 * labeled alternative in {@link ICSSParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExpression(ICSSParser.ExpressionContext ctx);
+	T visitParentheses(ICSSParser.ParenthesesContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code subtraction}
+	 * labeled alternative in {@link ICSSParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSubtraction(ICSSParser.SubtractionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code multiplication}
+	 * labeled alternative in {@link ICSSParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMultiplication(ICSSParser.MultiplicationContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code operator}
+	 * labeled alternative in {@link ICSSParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOperator(ICSSParser.OperatorContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code addition}
+	 * labeled alternative in {@link ICSSParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAddition(ICSSParser.AdditionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ICSSParser#value}.
 	 * @param ctx the parse tree
@@ -171,10 +206,4 @@ public interface ICSSVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitStylerule(ICSSParser.StyleruleContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link ICSSParser#statement}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitStatement(ICSSParser.StatementContext ctx);
 }
