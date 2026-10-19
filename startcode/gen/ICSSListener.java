@@ -97,26 +97,6 @@ public interface ICSSListener extends ParseTreeListener {
 	 */
 	void exitAttribute(ICSSParser.AttributeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ICSSParser#pseudoClass}.
-	 * @param ctx the parse tree
-	 */
-	void enterPseudoClass(ICSSParser.PseudoClassContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ICSSParser#pseudoClass}.
-	 * @param ctx the parse tree
-	 */
-	void exitPseudoClass(ICSSParser.PseudoClassContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ICSSParser#pseudoElement}.
-	 * @param ctx the parse tree
-	 */
-	void enterPseudoElement(ICSSParser.PseudoElementContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ICSSParser#pseudoElement}.
-	 * @param ctx the parse tree
-	 */
-	void exitPseudoElement(ICSSParser.PseudoElementContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link ICSSParser#variable}.
 	 * @param ctx the parse tree
 	 */
@@ -196,6 +176,16 @@ public interface ICSSListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitNonOperatorValues(ICSSParser.NonOperatorValuesContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ICSSParser#variableReference}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariableReference(ICSSParser.VariableReferenceContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ICSSParser#variableReference}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariableReference(ICSSParser.VariableReferenceContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ICSSParser#operatorValues}.
 	 * @param ctx the parse tree

@@ -124,30 +124,6 @@ public class ICSSBaseListener implements ICSSListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPseudoClass(ICSSParser.PseudoClassContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitPseudoClass(ICSSParser.PseudoClassContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterPseudoElement(ICSSParser.PseudoElementContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitPseudoElement(ICSSParser.PseudoElementContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterVariable(ICSSParser.VariableContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -239,6 +215,18 @@ public class ICSSBaseListener implements ICSSListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitNonOperatorValues(ICSSParser.NonOperatorValuesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterVariableReference(ICSSParser.VariableReferenceContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVariableReference(ICSSParser.VariableReferenceContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

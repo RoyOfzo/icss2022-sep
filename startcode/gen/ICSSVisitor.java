@@ -64,18 +64,6 @@ public interface ICSSVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAttribute(ICSSParser.AttributeContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ICSSParser#pseudoClass}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPseudoClass(ICSSParser.PseudoClassContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link ICSSParser#pseudoElement}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPseudoElement(ICSSParser.PseudoElementContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link ICSSParser#variable}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -123,6 +111,12 @@ public interface ICSSVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitNonOperatorValues(ICSSParser.NonOperatorValuesContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ICSSParser#variableReference}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVariableReference(ICSSParser.VariableReferenceContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ICSSParser#operatorValues}.
 	 * @param ctx the parse tree

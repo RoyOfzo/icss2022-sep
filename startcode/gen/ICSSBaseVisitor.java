@@ -80,20 +80,6 @@ public class ICSSBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements I
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitPseudoClass(ICSSParser.PseudoClassContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitPseudoElement(ICSSParser.PseudoElementContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
 	@Override public T visitVariable(ICSSParser.VariableContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -144,6 +130,13 @@ public class ICSSBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements I
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitNonOperatorValues(ICSSParser.NonOperatorValuesContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitVariableReference(ICSSParser.VariableReferenceContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

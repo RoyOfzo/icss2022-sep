@@ -59,18 +59,10 @@ idSelector: ID_IDENT;
 tagSelector: (LOWER_IDENT | CAPITAL_IDENT);
 attributeSelector: BOX_BRACKET_OPEN attribute BOX_BRACKET_CLOSE;
 variableAssignment: variable ASSIGNMENT_OPERATOR value SEMICOLON;
-
-// Onnodig, maar vond het leuk om ze te implementeren
 universalSelector: MUL;
-atRule: AT LOWER_IDENT OPEN_PARENTHESES (expression | declaration ) CLOSE_PARENTHESES OPEN_BRACE ( declarationBlock | stylerule+ ) CLOSE_BRACE;
-
-
-// Zou wellicht interessant zijn om te implementeren, maar kan te veel moeite zijn voor de tijd die we hebben
-attribute:; // moet nog over nagedacht worden, p[style] { ... }
-pseudoClass: attribute ASSIGNMENT_OPERATOR property;
-// pseudo-class is nog een beetje vaag, vereist meer onderzoek
-pseudoElement: attribute ASSIGNMENT_OPERATOR property;
-// pseudo-element is ook nog vaag, vereist meer onderzoek
+atRule: AT LOWER_IDENT OPEN_PARENTHESES (expression | declaration) CLOSE_PARENTHESES
+        OPEN_BRACE (declarationBlock | stylerule+) CLOSE_BRACE;
+attribute: LOWER_IDENT;
 
 variable: '!'? CAPITAL_IDENT;
 bool: (TRUE | FALSE);
@@ -78,9 +70,10 @@ scale: SCALAR;
 percentage: PERCENTAGE;
 pixelSize: PIXELSIZE;
 colorValue: COLOR;
-keyword: (LOWER_IDENT | CAPITAL_IDENT);
+keyword: LOWER_IDENT;
 nonOperatorValues: (bool | colorValue | keyword);
-operatorValues: ( pixelSize | percentage | scale | CAPITAL_IDENT);
+variableReference: CAPITAL_IDENT;
+operatorValues: (pixelSize | percentage | scale | variableReference);
 
 expression: OPEN_PARENTHESES expression CLOSE_PARENTHESES   # parentheses
           | expression (MUL) expression                     # multiplication
