@@ -256,25 +256,37 @@ public class ICSSBaseListener implements ICSSListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSubtraction(ICSSParser.SubtractionContext ctx) { }
+	@Override public void enterMultiplyOperation(ICSSParser.MultiplyOperationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSubtraction(ICSSParser.SubtractionContext ctx) { }
+	@Override public void exitMultiplyOperation(ICSSParser.MultiplyOperationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMultiplication(ICSSParser.MultiplicationContext ctx) { }
+	@Override public void enterAddOperation(ICSSParser.AddOperationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMultiplication(ICSSParser.MultiplicationContext ctx) { }
+	@Override public void exitAddOperation(ICSSParser.AddOperationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSubtractOperation(ICSSParser.SubtractOperationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSubtractOperation(ICSSParser.SubtractOperationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -287,18 +299,6 @@ public class ICSSBaseListener implements ICSSListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitOperator(ICSSParser.OperatorContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterAddition(ICSSParser.AdditionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitAddition(ICSSParser.AdditionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

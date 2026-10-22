@@ -76,9 +76,9 @@ variableReference: CAPITAL_IDENT;
 operatorValues: (pixelSize | percentage | scale | variableReference);
 
 expression: OPEN_PARENTHESES expression CLOSE_PARENTHESES   # parentheses
-          | expression (MUL) expression                     # multiplication
-          | expression (PLUS) expression                    # addition
-          | expression (MIN) expression                     # subtraction
+          | expression (MUL) expression                     # multiplyOperation
+          | expression (PLUS) expression                    # addOperation
+          | expression (MIN) expression                     # subtractOperation
           | operatorValues                                  # operator;
 
 value: '!'? expression | nonOperatorValues;

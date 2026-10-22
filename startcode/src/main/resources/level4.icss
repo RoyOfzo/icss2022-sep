@@ -25,10 +25,6 @@ p {
     width: HugeNumber - 1;
 }
 
-[] {
-    color: SecondaryColor;
-}
-
 // Multiple selectors are accepted by the grammar and exercise repetition.
 header nav a {
     color: #123456;
